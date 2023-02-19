@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A5A8DC129A25679005EA0B1 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5A8DC029A25679005EA0B1 /* NetworkService.swift */; };
+		3A5A8DC729A26693005EA0B1 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5A8DC529A26693005EA0B1 /* MainTableViewCell.swift */; };
+		3A5A8DC829A26693005EA0B1 /* MainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A5A8DC629A26693005EA0B1 /* MainTableViewCell.xib */; };
+		3A5A8DCA29A27636005EA0B1 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5A8DC929A27635005EA0B1 /* Company.swift */; };
 		3A6078D229A24CE700A0DA83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6078D129A24CE700A0DA83 /* AppDelegate.swift */; };
 		3A6078D429A24CE700A0DA83 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6078D329A24CE700A0DA83 /* SceneDelegate.swift */; };
 		3A6078D629A24CE700A0DA83 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6078D529A24CE700A0DA83 /* MainViewController.swift */; };
@@ -16,6 +20,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A5A8DC029A25679005EA0B1 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		3A5A8DC529A26693005EA0B1 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
+		3A5A8DC629A26693005EA0B1 /* MainTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainTableViewCell.xib; sourceTree = "<group>"; };
+		3A5A8DC929A27635005EA0B1 /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
 		3A6078CE29A24CE700A0DA83 /* JSONParsing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSONParsing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A6078D129A24CE700A0DA83 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A6078D329A24CE700A0DA83 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +45,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A5A8DC429A2667C005EA0B1 /* MainTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				3A5A8DC529A26693005EA0B1 /* MainTableViewCell.swift */,
+				3A5A8DC629A26693005EA0B1 /* MainTableViewCell.xib */,
+			);
+			path = MainTableViewCell;
+			sourceTree = "<group>";
+		};
 		3A6078C529A24CE700A0DA83 = {
 			isa = PBXGroup;
 			children = (
@@ -58,6 +75,9 @@
 			children = (
 				3A6078D129A24CE700A0DA83 /* AppDelegate.swift */,
 				3A6078D329A24CE700A0DA83 /* SceneDelegate.swift */,
+				3A5A8DC029A25679005EA0B1 /* NetworkService.swift */,
+				3A5A8DC929A27635005EA0B1 /* Company.swift */,
+				3A5A8DC429A2667C005EA0B1 /* MainTableViewCell */,
 				3A6078D529A24CE700A0DA83 /* MainViewController.swift */,
 				3A6078D729A24CE700A0DA83 /* Main.storyboard */,
 				3A6078DA29A24CE700A0DA83 /* Assets.xcassets */,
@@ -128,6 +148,7 @@
 			files = (
 				3A6078DE29A24CE700A0DA83 /* LaunchScreen.storyboard in Resources */,
 				3A6078DB29A24CE700A0DA83 /* Assets.xcassets in Resources */,
+				3A5A8DC829A26693005EA0B1 /* MainTableViewCell.xib in Resources */,
 				3A6078D929A24CE700A0DA83 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -161,7 +182,10 @@
 			files = (
 				3A6078D629A24CE700A0DA83 /* MainViewController.swift in Sources */,
 				3A6078D229A24CE700A0DA83 /* AppDelegate.swift in Sources */,
+				3A5A8DC129A25679005EA0B1 /* NetworkService.swift in Sources */,
 				3A6078D429A24CE700A0DA83 /* SceneDelegate.swift in Sources */,
+				3A5A8DC729A26693005EA0B1 /* MainTableViewCell.swift in Sources */,
+				3A5A8DCA29A27636005EA0B1 /* Company.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
