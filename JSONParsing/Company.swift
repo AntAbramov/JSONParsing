@@ -1,3 +1,4 @@
+// MARK: - Model
 struct Company: Decodable {
     let company: CompanyElement?
 }

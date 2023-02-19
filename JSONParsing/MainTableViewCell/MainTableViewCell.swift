@@ -1,10 +1,3 @@
-//
-//  MainTableViewCell.swift
-//  JSONParsing
-//
-//  Created by Anton Abramov on 19.02.2023.
-//
-
 import UIKit
 
 class MainTableViewCell: UITableViewCell {

@@ -11,24 +11,39 @@ enum ApiErrors: Error {
 }
 
 class NetworService {
+    private let cacheService = CacheService()
     
-    func obtainData(urlString: String, completion: @escaping (Result<Company, ApiErrors>) -> Void) {
+    func obtainData(urlString: String, completion: @escaping (Result<Company, Error>) -> Void) {
+        
+        if let cachedModel = cacheService.fetchModel(for: urlString) {
+            completion(.success(cachedModel))
+            return
+        }
+        
         guard let url = URL(string: urlString) else {
-            completion(.failure(.invalidUrl))
+            completion(.failure(ApiErrors.invalidUrl))
             return
         }
         
         let request = URLRequest(url: url)
-        let task = URLSession.shared.dataTask(with: request) { data, _, _ in
+        
+        let task = URLSession.shared.dataTask(with: request) { data, _, error in
             guard let data = data else {
-                completion(.failure(.invalidData))
+                completion(.failure(ApiErrors.invalidData))
                 return
             }
             
+            if let error = error {
+                completion(.failure(error))
+            }
+            
             if let model = try? JSONDecoder().decode(Company.self, from: data) {
-                completion(.success(model))
+                self.cacheService.cache(model: model, for: urlString)
+                DispatchQueue.main.async {
+                    completion(.success(model))
+                }
             } else {
-                completion(.failure(.decodingFailed))
+                completion(.failure(ApiErrors.decodingFailed))
             }
         }
         task.resume()
