@@ -56,6 +56,40 @@
 			path = MainTableViewCell;
 			sourceTree = "<group>";
 		};
+		3A5A8DCF29A2A379005EA0B1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3A5A8DC929A27635005EA0B1 /* Company.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3A5A8DD029A2A384005EA0B1 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				3A5A8DC029A25679005EA0B1 /* NetworkService.swift */,
+				3A5A8DCB29A2971B005EA0B1 /* CacheService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		3A5A8DD129A2A39F005EA0B1 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3A6078D529A24CE700A0DA83 /* MainViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		3A5A8DD229A2A3B3005EA0B1 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				3A6078D329A24CE700A0DA83 /* SceneDelegate.swift */,
+				3A6078D129A24CE700A0DA83 /* AppDelegate.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
 		3A6078C529A24CE700A0DA83 = {
 			isa = PBXGroup;
 			children = (
@@ -75,16 +109,14 @@
 		3A6078D029A24CE700A0DA83 /* JSONParsing */ = {
 			isa = PBXGroup;
 			children = (
-				3A6078D129A24CE700A0DA83 /* AppDelegate.swift */,
-				3A6078D329A24CE700A0DA83 /* SceneDelegate.swift */,
-				3A5A8DC029A25679005EA0B1 /* NetworkService.swift */,
-				3A5A8DCB29A2971B005EA0B1 /* CacheService.swift */,
-				3A5A8DC929A27635005EA0B1 /* Company.swift */,
+				3A5A8DD229A2A3B3005EA0B1 /* Delegate */,
+				3A5A8DCF29A2A379005EA0B1 /* Model */,
+				3A5A8DD029A2A384005EA0B1 /* Services */,
+				3A5A8DD129A2A39F005EA0B1 /* ViewController */,
 				3A5A8DC429A2667C005EA0B1 /* MainTableViewCell */,
-				3A6078D529A24CE700A0DA83 /* MainViewController.swift */,
 				3A6078D729A24CE700A0DA83 /* Main.storyboard */,
-				3A6078DA29A24CE700A0DA83 /* Assets.xcassets */,
 				3A6078DC29A24CE700A0DA83 /* LaunchScreen.storyboard */,
+				3A6078DA29A24CE700A0DA83 /* Assets.xcassets */,
 				3A6078DF29A24CE700A0DA83 /* Info.plist */,
 			);
 			path = JSONParsing;
