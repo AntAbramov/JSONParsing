@@ -8,6 +8,7 @@ enum ApiErrors: Error {
     case invalidUrl
     case decodingFailed
     case invalidData
+    case requestFailed
 }
 
 class NetworService {
@@ -27,9 +28,14 @@ class NetworService {
         
         let request = URLRequest(url: url)
         
-        let task = URLSession.shared.dataTask(with: request) { data, _, error in
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data else {
                 completion(.failure(ApiErrors.invalidData))
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse else {
+                completion(.failure(ApiErrors.requestFailed))
                 return
             }
             
@@ -37,11 +43,18 @@ class NetworService {
                 completion(.failure(error))
             }
             
+        
+            
+            
+//            let cached = CachedURLResponse(response: response, data: data)
+//            URLCache.shared.storeCachedResponse(cached, for: request)
+//            URLCache.shared.cachedResponse(for: request)
+//            URLCache.shared.removeCachedResponses(since: Date()
+            
+            
             if let model = try? JSONDecoder().decode(Company.self, from: data) {
                 self.cacheService.cache(model: model, for: urlString)
-                DispatchQueue.main.async {
-                    completion(.success(model))
-                }
+                completion(.success(model))
             } else {
                 completion(.failure(ApiErrors.decodingFailed))
             }

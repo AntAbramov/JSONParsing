@@ -14,18 +14,16 @@ class MainViewController: UIViewController {
     }
     var titleHeader = "" {
         didSet {
-            mainTableView.reloadData()
+            DispatchQueue.main.async {
+                self.mainTableView.reloadData()
+            }
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(mainTableView)
-        mainTableView.dataSource = self
-        mainTableView.delegate = self
+        configureTableView()
         fetchData()
-        
-        mainTableView.register(MainTableViewCell.nib(), forCellReuseIdentifier: MainTableViewCell.identifire)
     }
     
     override func viewDidLayoutSubviews() {
@@ -33,14 +31,23 @@ class MainViewController: UIViewController {
         setTableViewConstraints()
     }
     
-    func fetchData() {
+    private func fetchData() {
         networkService.obtainData(urlString: ApiUrl.givenLink) { result in
             switch result {
             case .success(let company):
-                if let employees = company.company?.employees {
-                    self.employeesDataSource = employees
+                if var employees = company.company?.employees {
+                    employees.sort { emp1, emp2 in
+                        if let char1 = emp1.name?.first {
+                            if let char2 = emp2.name?.first {
+                                return char1 < char2
+                            }
+                        }
+                        return false
+                    }
+                    DispatchQueue.main.async {
+                        self.employeesDataSource = employees
+                    }
                 }
-                
                 if let companyName = company.company?.name {
                     DispatchQueue.main.async {
                         self.titleHeader = companyName
@@ -52,7 +59,14 @@ class MainViewController: UIViewController {
         }
     }
     
-    func setTableViewConstraints() {
+    private func configureTableView() {
+        view.addSubview(mainTableView)
+        mainTableView.dataSource = self
+        mainTableView.delegate = self
+        mainTableView.register(MainTableViewCell.nib(), forCellReuseIdentifier: MainTableViewCell.identifire)
+    }
+    
+   private func setTableViewConstraints() {
         mainTableView.translatesAutoresizingMaskIntoConstraints = false
         mainTableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         mainTableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true

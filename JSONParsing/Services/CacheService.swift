@@ -3,6 +3,7 @@ import UIKit
 class CacheService {
     
     private var cache = NSCache<NSString, CompanyStructHolder>()
+    private var urlCache = URLCache.shared
     
     private class CompanyStructHolder {
         let value: Company
