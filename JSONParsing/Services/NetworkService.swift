@@ -12,21 +12,20 @@ enum ApiErrors: Error {
 }
 
 class NetworService {
-    private let cacheService = CacheService()
     
     func obtainData(urlString: String, completion: @escaping (Result<Company, Error>) -> Void) {
-        
-        if let cachedModel = cacheService.fetchModel(for: urlString) {
-            completion(.success(cachedModel))
-            return
-        }
-        
         guard let url = URL(string: urlString) else {
             completion(.failure(ApiErrors.invalidUrl))
             return
         }
-        
         let request = URLRequest(url: url)
+        
+        if let cachedResponse = URLCache.shared.cachedResponse(for: request) {
+            if let model = decode(data: cachedResponse.data) {
+                completion(.success(model))
+            }
+            return
+        }
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data else {
@@ -43,23 +42,24 @@ class NetworService {
                 completion(.failure(error))
             }
             
-        
-            
-            
-//            let cached = CachedURLResponse(response: response, data: data)
-//            URLCache.shared.storeCachedResponse(cached, for: request)
-//            URLCache.shared.cachedResponse(for: request)
-//            URLCache.shared.removeCachedResponses(since: Date()
-            
-            
-            if let model = try? JSONDecoder().decode(Company.self, from: data) {
-                self.cacheService.cache(model: model, for: urlString)
+            if let model = self.decode(data: data) {
+                let cached = CachedURLResponse(response: response, data: data)
+                URLCache.shared.storeCachedResponse(cached, for: request)
+                URLCache.shared.removeCachedResponses(since: Date(timeIntervalSinceNow: TimeInterval(3600000)))
                 completion(.success(model))
             } else {
                 completion(.failure(ApiErrors.decodingFailed))
             }
         }
         task.resume()
+    }
+    
+    //Декод
+    private func decode(data: Data) -> Company? {
+        if let model = try? JSONDecoder().decode(Company.self, from: data) {
+            return model
+        }
+        return nil
     }
     
 }
