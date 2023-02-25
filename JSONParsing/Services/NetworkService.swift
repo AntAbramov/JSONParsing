@@ -54,7 +54,6 @@ class NetworService {
         task.resume()
     }
     
-    //Декод
     private func decode(data: Data) -> Company? {
         if let model = try? JSONDecoder().decode(Company.self, from: data) {
             return model

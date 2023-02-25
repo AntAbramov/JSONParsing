@@ -13,8 +13,7 @@ class MainTableViewCell: UITableViewCell {
         skillsLabel.text = ""
         employee.skills?.forEach { skill in
             if skill != employee.skills?.last {
-                self.skillsLabel.text?.append(skill)
-                self.skillsLabel.text?.append(", ")
+                self.skillsLabel.text?.append("\(skill), ")
             } else {
                 self.skillsLabel.text?.append(skill)
             }
