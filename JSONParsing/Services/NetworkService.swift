@@ -11,7 +11,7 @@ enum ApiErrors: Error {
     case requestFailed
 }
 
-class NetworService {
+class NetworkService {
     
     func obtainData(urlString: String, completion: @escaping (Result<Company, Error>) -> Void) {
         guard let url = URL(string: urlString) else {

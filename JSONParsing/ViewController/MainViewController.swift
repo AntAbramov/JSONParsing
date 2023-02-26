@@ -1,9 +1,10 @@
 import UIKit
+import Foundation
 
 class MainViewController: UIViewController {
     
     let mainTableView = UITableView()
-    let networkService = NetworService()
+    let networkService = NetworkService()
     
     var employeesDataSource: [Employee] = [Employee]() {
         didSet {
@@ -55,8 +56,24 @@ class MainViewController: UIViewController {
                 }
             case .failure(let error):
                 print(error)
+                
+                DispatchQueue.main.async {
+                    self.presentAlert(title: "Нету интернету", message: "Надо включить инет")
+                }
+                
+                
             }
         }
+    }
+    
+    private func presentAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let alertAction = UIAlertAction(title: "Reload", style: .cancel) { _ in
+            
+        }
+        alertController.addAction(alertAction)
+        self.present(alertController, animated: true)
     }
     
     private func configureTableView() {
