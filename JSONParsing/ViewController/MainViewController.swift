@@ -1,5 +1,4 @@
 import UIKit
-import Foundation
 
 class MainViewController: UIViewController {
     
@@ -58,10 +57,8 @@ class MainViewController: UIViewController {
                 print(error)
                 
                 DispatchQueue.main.async {
-                    self.presentAlert(title: "Нету интернету", message: "Надо включить инет")
+                    self.presentAlert(title: "Network connection failed", message: "Please turn on the internet")
                 }
-                
-                
             }
         }
     }
@@ -79,7 +76,6 @@ class MainViewController: UIViewController {
     private func configureTableView() {
         view.addSubview(mainTableView)
         mainTableView.dataSource = self
-        mainTableView.delegate = self
         mainTableView.register(MainTableViewCell.nib(), forCellReuseIdentifier: MainTableViewCell.identifire)
     }
     
@@ -93,8 +89,8 @@ class MainViewController: UIViewController {
     
 }
 
-// MARK: - UITableViewDataSource, UITableViewDelegate
-extension MainViewController: UITableViewDataSource, UITableViewDelegate {
+// MARK: - UITableViewDataSource
+extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         employeesDataSource.count
     }
